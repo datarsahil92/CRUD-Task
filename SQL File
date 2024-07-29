@@ -1,0 +1,56 @@
+SQL STORED PROCEDURE 
+
+
+create procedure [dbo].[InsertCourse_SP]
+@StudID int ,
+@StudName varchar(50),
+@CourseName varchar(50),
+@Duration varchar(50),
+@Installment varchar(50),
+@Onetime varchar(50)
+as
+begin
+	Insert into StudTable(Stud_ID,Stud_Name,CourseName,Duration,Installment,Onetime)
+	values(@StudID,@StudName,@CourseName,@Duration,@Installment,@Onetime)
+end
+GO
+
+CREATE PROCEDURE [dbo].[UpdateCourse_SP]
+@StudID int ,
+@StudName varchar(50),
+@CourseName varchar(50),
+@Duration varchar(50),
+@Installment varchar(50),
+@Onetime varchar(50)
+AS
+BEGIN
+    UPDATE StudTable
+    SET Stud_Name = @StudName,
+        CourseName= @CourseName,
+		Duration=@Duration,
+		Installment=@Installment,
+		Onetime=@Onetime
+    WHERE Stud_ID = @StudID;
+END;
+
+GO
+
+
+CREATE PROCEDURE [dbo].[DeleteCourse_SP]
+    @StudID INT
+AS
+BEGIN
+    DELETE StudTable
+    WHERE Stud_ID = @StudID;
+END;
+GO
+
+CREATE PROCEDURE [dbo].[DisplayCourse_SP]
+    @StudID INT
+AS
+BEGIN
+    SELECT * FROM  StudTable
+    WHERE Stud_ID = @StudID;
+END;
+GO
+
